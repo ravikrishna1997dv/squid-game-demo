@@ -88,7 +88,7 @@ body{font-size:16px}
 .signal-light{width:21px;height:21px;border-radius:50%;display:block;background:#333a30;opacity:.45}
 .game-stage[data-state="red"] .signal-red{background:var(--pink);opacity:1;box-shadow:0 0 16px #ff5b8a99}
 .game-stage[data-state="green"] .signal-green{background:#9de66a;opacity:1;box-shadow:0 0 16px #9de66a88}
-.runner-pack{position:absolute;left:7%;bottom:29%;width:70%;height:78px;z-index:2;animation:runner-traverse 7s linear both}
+.runner-pack{position:absolute;left:7%;bottom:29%;width:70%;height:78px;z-index:2;animation:runner-traverse 7s linear infinite}
 .runner{position:absolute;bottom:0;width:25px;height:63px;transform-origin:50% 100%;color:var(--pink)}
 .runner-one{left:0;--runner-color:#ff5b8a;transform:scale(.85)}
 .runner-two{left:28px;--runner-color:#e7dce1;transform:scale(.72)}
