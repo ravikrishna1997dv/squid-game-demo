@@ -71,3 +71,50 @@ body{font-size:16px}
 .round.active .round-num{background:var(--pink);border-color:var(--pink);color:#211017}
 .investor-stamp{border-color:var(--pink);color:var(--pink)}
 @media(max-width:720px){body{font-size:15px}.hero-lede{font-size:15px}}
+
+/* Seven-second Red Light / Green Light intro */
+.red-light-intro{padding:48px 8% 30px;background:linear-gradient(180deg,#10120f,#151813);border-top:1px solid #ffffff0a;overflow:hidden}
+.red-light-heading{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:18px}
+.red-light-heading .section-kicker{font-size:10px}
+.red-light-heading p{font-size:12px;letter-spacing:1.3px;color:#b6b0b1;margin:0}
+.red-light-heading strong{color:var(--pink);font-weight:800}
+.game-stage{height:190px;position:relative;overflow:hidden;border:1px solid #ffffff18;background:linear-gradient(180deg,#1b2019 0%,#171b15 70%,#24251f 70%,#24251f 100%);isolation:isolate}
+.game-stage:before{content:"";position:absolute;left:0;right:0;bottom:29%;height:1px;background:#ffffff25}
+.game-stage:after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:repeating-linear-gradient(90deg,#ff5b8a 0 18px,transparent 18px 30px);opacity:.8}
+.game-skyline{position:absolute;inset:0 0 30% 0;display:flex;align-items:end;gap:12px;padding:0 5%;opacity:.42}
+.game-skyline span{display:block;flex:1;max-width:95px;background:linear-gradient(180deg,#30392c,#20261d);border:1px solid #ffffff0a}
+.game-skyline span:nth-child(1){height:42%}.game-skyline span:nth-child(2){height:68%}.game-skyline span:nth-child(3){height:52%}.game-skyline span:nth-child(4){height:80%}.game-skyline span:nth-child(5){height:47%}
+.game-signal{position:absolute;z-index:3;right:5%;top:18px;width:35px;padding:7px 6px;display:grid;gap:6px;border-radius:20px;background:#0b0d0b;border:1px solid #5b6156;box-shadow:0 4px 20px #0005}
+.signal-light{width:21px;height:21px;border-radius:50%;display:block;background:#333a30;opacity:.45}
+.game-stage[data-state="red"] .signal-red{background:var(--pink);opacity:1;box-shadow:0 0 16px #ff5b8a99}
+.game-stage[data-state="green"] .signal-green{background:#9de66a;opacity:1;box-shadow:0 0 16px #9de66a88}
+.runner-pack{position:absolute;left:7%;bottom:29%;width:70%;height:78px;z-index:2;animation:runner-traverse 7s linear both}
+.runner{position:absolute;bottom:0;width:25px;height:63px;transform-origin:50% 100%;color:var(--pink)}
+.runner-one{left:0;--runner-color:#ff5b8a;transform:scale(.85)}
+.runner-two{left:28px;--runner-color:#e7dce1;transform:scale(.72)}
+.runner-three{left:55px;--runner-color:#ff83a6;transform:scale(.9)}
+.runner-four{left:84px;--runner-color:#b7c0b0;transform:scale(.78)}
+.runner i{position:absolute;display:block;background:var(--runner-color,#ff5b8a);border-radius:8px}
+.runner-head{width:13px;height:13px;border-radius:50%!important;left:6px;top:0;background:#f1e8ec!important;border:2px solid var(--runner-color)}
+.runner-body{width:9px;height:25px;left:8px;top:15px;transform:rotate(-5deg)}
+.runner-arm{width:6px;height:22px;left:7px;top:18px;transform-origin:top center}
+.runner .arm-a{transform:rotate(36deg)}.runner .arm-b{transform:rotate(-38deg)}
+.runner-leg{width:7px;height:25px;left:8px;top:36px;transform-origin:top center}
+.runner .leg-a{transform:rotate(28deg)}.runner .leg-b{transform:rotate(-28deg)}
+.runner-pack .runner:nth-child(2) .runner-body,.runner-pack .runner:nth-child(4) .runner-body{transform:rotate(8deg)}
+.game-stage[data-state="green"] .runner{animation:runner-jog .36s ease-in-out infinite alternate}
+.game-stage[data-state="red"] .runner{animation:none}
+.finish-line{position:absolute;right:15%;bottom:29%;height:76px;width:2px;background:var(--pink);box-shadow:0 0 12px #ff5b8a66;z-index:1}
+.finish-line span{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font:8px var(--mono);letter-spacing:1px;color:var(--pink)}
+.game-status{position:absolute;left:18px;bottom:11px;display:flex;align-items:center;gap:9px;z-index:4;font:9px var(--mono);letter-spacing:1.3px;color:#d5d8ce}
+.status-indicator{width:7px;height:7px;border-radius:50%;background:#9de66a;box-shadow:0 0 10px #9de66a66}
+.game-stage[data-state="red"] .status-indicator{background:var(--pink);box-shadow:0 0 10px #ff5b8a88}
+.game-status strong{color:#9de66a;font-weight:500}
+.game-stage[data-state="red"] .game-status strong{color:var(--pink)}
+.status-divider{color:#596052}
+.game-timing{display:flex;justify-content:space-between;padding-top:10px;font:9px var(--mono);letter-spacing:1.1px;color:#818a77}
+.game-timing b{color:var(--pink);font-size:13px;margin-left:5px}
+@keyframes runner-traverse{0%{transform:translateX(0)}24%{transform:translateX(20%)}37%{transform:translateX(20%)}62%{transform:translateX(52%)}74%{transform:translateX(52%)}100%{transform:translateX(100%)}}
+@keyframes runner-jog{from{filter:brightness(.9)}to{filter:brightness(1.25)}}
+@media(max-width:720px){.red-light-intro{padding:35px 7% 24px}.red-light-heading{display:block}.red-light-heading p{margin-top:8px;font-size:10px}.game-stage{height:160px}.runner-pack{width:78%;transform-origin:left bottom}.runner{transform-origin:50% 100%}.game-signal{right:4%;top:12px;transform:scale(.85)}.finish-line{right:12%}.game-status{font-size:8px;gap:6px}.game-timing{font-size:8px}}
+@media(prefers-reduced-motion:reduce){.runner-pack,.runner{animation:none!important}.runner-pack{transform:translateX(25%)}}
