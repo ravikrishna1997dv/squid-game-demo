@@ -44,6 +44,46 @@
     menu.textContent = "☰";
   }));
 
+  // Seven-second Red Light / Green Light scene, synced to the runners' pauses.
+  const gameStage = $("game-stage");
+  if (gameStage) {
+    const statusText = $("game-status-text");
+    const phases = [
+      { at: 0, state: "green", label: "GREEN LIGHT" },
+      { at: 1680, state: "red", label: "RED LIGHT — FREEZE" },
+      { at: 2590, state: "green", label: "GREEN LIGHT" },
+      { at: 4340, state: "red", label: "RED LIGHT — FREEZE" },
+      { at: 5180, state: "green", label: "GREEN LIGHT" }
+    ];
+    let phaseIndex = -1;
+    const start = performance.now();
+    function syncGameLight(now) {
+      const elapsed = (now - start) % 7000;
+      let next = phases[0];
+      for (const phase of phases) {
+        if (elapsed >= phase.at) next = phase;
+      }
+      const nextIndex = phases.indexOf(next);
+      if (nextIndex !== phaseIndex) {
+        phaseIndex = nextIndex;
+        gameStage.dataset.state = next.state;
+        statusText.textContent = next.label;
+      }
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        requestAnimationFrame(syncGameLight);
+      } else {
+        gameStage.dataset.state = "green";
+        statusText.textContent = "GREEN LIGHT";
+      }
+    }
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      requestAnimationFrame(syncGameLight);
+    } else {
+      gameStage.dataset.state = "green";
+      statusText.textContent = "GREEN LIGHT";
+    }
+  }
+
   const revealObserver = "IntersectionObserver" in window ? new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
